@@ -1,6 +1,9 @@
+// import config from "~/.config/worq.json" with { type: "file" };
 import Enquirer from "enquirer";
-import config from "./config.json";
 import { $ } from "bun";
+import { buildUserConfig } from "./config";
+
+const { config, configPath } = await buildUserConfig();
 
 const dirs: string[] = config.dirs ?? [];
 
@@ -19,7 +22,7 @@ const add = async () => {
   const targetDir = response.dir;
   dirs.push(targetDir);
   const data = { dirs: dirs };
-  await Bun.write("config.json", JSON.stringify(data, null, 2));
+  await Bun.write(configPath, JSON.stringify(data, null, 2));
   console.log(`${targetDir} successfully added`);
 };
 
@@ -41,7 +44,7 @@ const remove = async () => {
   });
   const newDirs = dirs.filter((e) => !selected.value.includes(e));
   const data = { dirs: newDirs };
-  await Bun.write("config.json", JSON.stringify(data, null, 2));
+  await Bun.write(configPath, JSON.stringify(data, null, 2));
   console.log(`${selected.value.join(", ")} successfully removed`);
 };
 
