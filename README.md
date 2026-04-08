@@ -1,15 +1,25 @@
 # worq
+tools to navigate project, currently only support wezterm
 
-To install dependencies:
-
-```bash
-bun install
-```
-
-To run:
-
+Development:
 ```bash
 bun run index.ts
 ```
 
-This project was created using `bun init` in bun v1.3.6. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+Usage:
+- compile
+  ```bash
+  bun build index.ts --compile --outfile worq
+  ```
+- run
+  ```bash
+  ./worq
+  ```
+- adding directory
+  ```bash
+  ./worq --add
+  ```
+- removing directory
+  ```bash
+  ./worq --remove
+  ```
