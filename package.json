@@ -1,0 +1,17 @@
+{
+  "name": "worq",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prettier": "^3.8.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@types/inquirer": "^9.0.9",
+    "enquirer": "^2.4.1"
+  }
+}
