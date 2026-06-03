@@ -3,7 +3,7 @@ import { homedir } from "os";
 import { join } from "path";
 
 export const buildUserConfig = async () => {
-  const defaultConfig = { dirs: [] };
+  const defaultConfig = { dirs: [], editor: "wezterm" };
   let config = defaultConfig;
 
   const configPath = join(homedir(), ".config", "worq.json");

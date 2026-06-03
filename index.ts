@@ -65,9 +65,30 @@ const run = async () => {
     }),
   });
   selected.value.forEach(async (e) => {
-    await $`wezterm cli spawn --cwd ${e}`.quiet();
+    if (config.editor == "neovide") {
+      await $`neovide --chdir ${e} --fork --reuse-instance --new-window`.quiet();
+    } else {
+      await $`wezterm cli spawn --cwd ${e}`.quiet();
+    }
     console.log("opening", e);
   });
+};
+
+const pickEditor = async () => {
+  const selected: { value: string[] } = await Enquirer.prompt({
+    type: "select",
+    name: "value",
+    message: "Pick Editor",
+    choices: ["wezterm", "neovide"].map((e) => {
+      return {
+        name: e,
+        value: e,
+      };
+    }),
+  });
+  const data = { dirs: dirs, editor: selected.value };
+  await Bun.write(configPath, JSON.stringify(data, null, 2));
+  console.log(`editor successfully set`);
 };
 
 const arg = Bun.argv[2];
@@ -79,8 +100,13 @@ switch (arg) {
   case "--remove":
     remove();
     break;
+  case "--editor":
+    pickEditor();
+    break;
+  case "--config":
+    console.log(config);
+    break;
   default:
     run();
     break;
 }
-
