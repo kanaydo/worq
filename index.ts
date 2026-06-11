@@ -104,7 +104,7 @@ switch (arg) {
     pickEditor();
     break;
   case "--config":
-    console.log(config);
+    console.log(JSON.stringify(config, null, 2));
     break;
   default:
     run();
