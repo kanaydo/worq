@@ -23,3 +23,11 @@ Usage:
   ```bash
   ./worq --remove
   ```
+- set editor
+  ```
+  ./worq --editor
+  ```
+- show current config
+  ```
+  ./worq --config
+  ```
